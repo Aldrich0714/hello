@@ -77,11 +77,16 @@ p { color: #000; line-height: 1.7; font-size: 18px; }
     color: #ff7675;
     user-select: none;
     pointer-events: none;
-    z-index: 1; /* Nasa likod ng card */
+    z-index: 1; 
     animation: moveUp linear forwards;
 }
 
 @keyframes moveUp {
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
     100% { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
+}
+
+.card {
+    max-height: 85vh;
+    overflow-y: auto;
 }
