@@ -1,13 +1,16 @@
 body {
-    background: radial-gradient(circle at center, #2c1654, #8a2387, #e94057);
-    background-size: 200% 200%;
-    animation: gradientBG 15s ease infinite;
+    /* FIX: Corrected filename typo and set background properties */
+    background-image: url('images/cute.jpg.jpg'); 
+    background-size: cover; /* Changed to cover for a clean background image fit */
+    background-position: center 64%;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     overflow: hidden;
+    /* Removed the gradientBG animation since it's no longer a gradient */
 }
 
 .garden {
@@ -32,7 +35,7 @@ body {
     height: 200px;
     bottom: 320px;
     left: -80px;
-    z-index: 5;
+    z-index: 5; /* Keeps the blossom assembly layered right */
 }
 
 .petal-main, .petal-back {
@@ -148,7 +151,8 @@ body {
     position: absolute;
     background: linear-gradient(to top, #1b4332 0%, #40916c 100%);
     transform-origin: bottom center;
-    z-index: 6;
+    /* FIX: Changed z-index from 6 to 3 so leaves sit realistically behind foreground petals */
+    z-index: 3; 
     box-shadow: inset -4px 4px 12px rgba(0,0,0,0.15);
     transition: transform 0.5s ease;
 }
@@ -169,7 +173,8 @@ body {
     bottom: 90px;
     border-radius: 0px 100px 0px 100px;
     transform: rotate(25deg);
-    z-index: 3;
+    /* FIX: Keeps right leaf layered just slightly behind left leaf/stem setup */
+    z-index: 2; 
 }
 
 .tulip-grand:hover .leaf.leaf-left { transform: rotate(-38deg) scaleX(1.05); }
@@ -179,10 +184,4 @@ body {
 @keyframes gentleSway {
     0% { transform: translateX(-50%) rotate(-2.5deg); }
     100% { transform: translateX(-50%) rotate(2.5deg); }
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
