@@ -1,72 +1,63 @@
-function goToStep2() {
+document.addEventListener("DOMContentLoaded", () => {
+    const tulip = document.querySelector(".tulip-grand");
+    const garden = document.querySelector(".garden");
 
-    const step1 = document.getElementById('step-1');
-    const step2 = document.getElementById('step-2');
-    const concernDiv = document.getElementById('Concern-content');
+    function createPollen() {
+        if (!tulip.matches(':hover')) return;
 
-  
-    step1.style.display = 'none';
-    concernDiv.classList.add('hidden');
-    concernDiv.style.display = 'none';
+        const particle = document.createElement("div");
+        particle.style.position = "absolute";
+        particle.style.borderRadius = "50%";
+        
+        const size = Math.random() * 4 + 3;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
 
-    step2.classList.remove('hidden');
-    step2.style.display = 'block';
-    step2.classList.add('fade-in');
-}
+        const randomX = (garden.offsetWidth / 2) + (Math.random() * 60 - 30);
+        const startY = 320; 
 
+        particle.style.left = `${randomX}px`;
+        particle.style.bottom = `${startY}px`;
 
-function Concern(choice) {
-    // Kunin ang lahat ng elements
-    const step1 = document.getElementById('step-1');
-    const step2 = document.getElementById('step-2');
-    const concernDiv = document.getElementById('Concern-content');
-    const reaction = document.getElementById('reaction-text');
+        // Magical Pink Particle Palette
+        const colors = ["#ffffff", "#ffe5ec", "#ffb3c6", "#ff4d6d"];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        particle.style.background = randomColor;
+        particle.style.boxShadow = `0 0 8px ${randomColor}, 0 0 15px ${randomColor}`;
+        particle.style.opacity = "0";
+        particle.style.pointerEvents = "none";
+        particle.style.zIndex = "4"; 
 
+        garden.appendChild(particle);
 
-    step1.style.display = 'none';
-    step2.classList.add('hidden');
-    step2.style.display = 'none';
+        const driftX = Math.random() * 100 - 50; 
+        const driftY = Math.random() * 150 + 100; 
 
-    concernDiv.classList.remove('hidden');
-    concernDiv.style.display = 'block';
-    concernDiv.classList.add('fade-in');
-
-    if (choice === 'yes') {
-        reaction.innerHTML = "<strong>Napunta ako ng Manila hindi dahil dun, may ibang rason</strong>";
-    }
-
-
-    triggerConfetti();
-    startHeartRain();
-}
-
-
-function triggerConfetti() {
-    if (typeof confetti === 'function') {
-        confetti({
-            particleCount: 150,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#ff7675', '#ffc0cb']
+        particle.animate([
+            { transform: 'translate(0, 0)', opacity: 0 },
+            { opacity: 1, offset: 0.2 },
+            { transform: `translate(${driftX}px, -${driftY}px)`, opacity: 0 }
+        ], {
+            duration: Math.random() * 1500 + 1500, 
+            easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+            fill: 'forwards'
         });
+
+        setTimeout(() => {
+            particle.remove();
+        }, 3000);
     }
-}
 
-let heartInterval;
-function startHeartRain() {
-    if (!heartInterval) {
-        heartInterval = setInterval(createHeart, 300);
-    }
-}
+    tulip.addEventListener("mousemove", () => {
+        if (Math.random() > 0.6) {
+            createPollen();
+        }
+    });
 
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart-fly'); 
-    heart.innerHTML = '❤'; 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = Math.random() * 2 + 3 + "s";
-    heart.style.fontSize = Math.random() * 15 + 15 + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => { heart.remove(); }, 5000);
-}
+    tulip.addEventListener("click", () => {
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createPollen, i * 50);
+        }
+    });
+});
