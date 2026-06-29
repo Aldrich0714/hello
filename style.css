@@ -1,187 +1,112 @@
+/* ==========================================
+   1. BASE STYLES & LAYOUT
+   ========================================== */
 body {
-    /* FIX: Corrected filename typo and set background properties */
-    background-image: url('images/cute.jpg.jpg'); 
-    background-size: cover; /* Changed to cover for a clean background image fit */
-    background-position: center 64%;
-    background-repeat: no-repeat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+}
+
+/* Container para magmukhang modernong card o post */
+.container {
+    background-color: #ffffff;
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   2. TYPOGRAPHY & HEADERS
+   ========================================== */
+h1 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #2c3e50;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+}
+
+p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 25px 0;
+}
+
+/* ==========================================
+   3. STATUS HEADER & BADGES
+   ========================================== */
+.status-bar {
+    font-size: 0.9rem;
+    color: #555555;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Inline code tag styles */
+code {
+    background-color: #f1f1f1;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    color: #d63384;
+}
+
+/* ==========================================
+   4. DARK MODE CODE BLOCK
+   ========================================== */
+pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 18px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.95rem;
+    margin: 20px 0;
+}
+
+/* Syntax Highlighting para sa code */
+pre .keyword { color: #569cd6; font-weight: bold; }
+pre .boolean { color: #569cd6; }
+pre .comment { color: #6a9955; font-style: italic; }
+
+/* ==========================================
+   5. CORE VALUES LIST
+   ========================================== */
+ul {
+    list-style: none; /* Tinanggal ang default dots */
+    padding: 0;
     margin: 0;
-    overflow: hidden;
-    /* Removed the gradientBG animation since it's no longer a gradient */
 }
 
-.garden {
-    position: relative;
-    width: 400px;
-    height: 600px;
-}
-
-.tulip-grand {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    transform-origin: bottom center;
-    animation: gentleSway 6s ease-in-out infinite alternate;
-}
-
-/* --- THE BLOSSOM HEAD --- */
-.blossom-box {
-    position: relative;
-    width: 160px;
-    height: 200px;
-    bottom: 320px;
-    left: -80px;
-    z-index: 5; /* Keeps the blossom assembly layered right */
-}
-
-.petal-main, .petal-back {
-    position: absolute;
-    border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
-    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* Center Front Petal - Soft Pastel Pink with Vivid Rose Base */
-.petal-main.center-front {
-    width: 110px;
-    height: 170px;
-    left: 25px;
-    bottom: 10px;
-    background: linear-gradient(180deg, #ffb3c6 0%, #ff4d6d 60%, #c71585 100%);
-    box-shadow: inset 0 -15px 25px rgba(139, 0, 74, 0.4), 
-                0 10px 25px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-}
-
-/* Left Front Petal - Coral Rose Pink */
-.petal-main.left-front {
-    width: 100px;
-    height: 160px;
-    left: 5px;
-    bottom: 15px;
-    background: linear-gradient(160deg, #ff758f 0%, #ff8da1 40%, #ba124d 100%);
-    transform: rotate(-18deg);
-    box-shadow: inset -10px -15px 20px rgba(0, 0, 0, 0.35);
-    z-index: 9;
-}
-
-/* Right Front Petal */
-.petal-main.right-front {
-    width: 100px;
-    height: 160px;
-    right: 5px;
-    bottom: 15px;
-    background: linear-gradient(200deg, #ff758f 0%, #ff8da1 40%, #ba124d 100%);
-    transform: rotate(18deg);
-    box-shadow: inset 10px -15px 20px rgba(0, 0, 0, 0.35);
-    z-index: 9;
-}
-
-/* Background Petals - Deep Magenta Deepening the Shadow Layer */
-.petal-back.left-back {
-    width: 90px;
-    height: 165px;
-    left: 15px;
-    bottom: 25px;
-    background: linear-gradient(140deg, #a20021 0%, #ff4d6d 100%);
-    transform: rotate(-35deg);
-    opacity: 0.85;
-    z-index: 2;
-}
-
-.petal-back.right-back {
-    width: 90px;
-    height: 165px;
-    right: 15px;
-    bottom: 25px;
-    background: linear-gradient(220deg, #a20021 0%, #ff4d6d 100%);
-    transform: rotate(35deg);
-    opacity: 0.85;
-    z-index: 2;
-}
-
-/* Golden Inner Pistil Core */
-.pistil {
-    position: absolute;
-    width: 24px;
-    height: 50px;
-    background: linear-gradient(to top, #ffe4e1, #ffb3c6);
-    border-radius: 50% 50% 0 0;
-    left: 68px;
-    bottom: 40px;
-    z-index: 3;
-    box-shadow: 0 0 15px #fff0f5;
-}
-
-/* --- THE HOVER BLOOM EFFECT --- */
-.tulip-grand:hover .petal-main.center-front {
-    transform: scaleY(0.96) translateY(5px);
-    box-shadow: inset 0 -15px 25px rgba(139, 0, 74, 0.2), 0 0 30px #ff758f;
-}
-.tulip-grand:hover .petal-main.left-front {
-    transform: rotate(-28deg) translate(-10px, -5px);
-}
-.tulip-grand:hover .petal-main.right-front {
-    transform: rotate(28deg) translate(10px, -5px);
-}
-.tulip-grand:hover .petal-back.left-back {
-    transform: rotate(-50deg) translate(-12px, -5px);
-}
-.tulip-grand:hover .petal-back.right-back {
-    transform: rotate(50deg) translate(12px, -5px);
-}
-
-/* --- STEM & LEAVES --- */
-.stem {
-    position: absolute;
-    width: 14px;
-    height: 340px;
-    background: linear-gradient(to right, #2d6a4f, #52b788, #2d6a4f);
-    left: -7px;
-    bottom: 0;
-    border-radius: 7px;
-    z-index: 4;
-    box-shadow: 4px 0 15px rgba(0,0,0,0.2);
-}
-
-.leaf {
-    position: absolute;
-    background: linear-gradient(to top, #1b4332 0%, #40916c 100%);
-    transform-origin: bottom center;
-    /* FIX: Changed z-index from 6 to 3 so leaves sit realistically behind foreground petals */
-    z-index: 3; 
-    box-shadow: inset -4px 4px 12px rgba(0,0,0,0.15);
-    transition: transform 0.5s ease;
-}
-
-.leaf.leaf-left {
-    width: 55px;
-    height: 180px;
-    left: -50px;
-    bottom: 40px;
-    border-radius: 100px 0px 100px 0px;
-    transform: rotate(-30deg);
-}
-
-.leaf.leaf-right {
-    width: 45px;
-    height: 220px;
-    left: 2px;
-    bottom: 90px;
-    border-radius: 0px 100px 0px 100px;
-    transform: rotate(25deg);
-    /* FIX: Keeps right leaf layered just slightly behind left leaf/stem setup */
-    z-index: 2; 
-}
-
-.tulip-grand:hover .leaf.leaf-left { transform: rotate(-38deg) scaleX(1.05); }
-.tulip-grand:hover .leaf.leaf-right { transform: rotate(32deg) scaleX(1.05); }
-
-/* --- SYSTEM TIMELINES --- */
-@keyframes gentleSway {
-    0% { transform: translateX(-50%) rotate(-2.5deg); }
-    100% { transform: translateX(-50%) rotate(2.5deg); }
+li {
+    background-color: #f8f9fa;
+    margin-bottom: 8px;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border-left: 4px solid #2ecc71; /* Green accent line */
+    font-weight: 500;
 }
